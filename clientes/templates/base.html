@@ -1,0 +1,190 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%} {% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href=" {% static 'style.css'%} ">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <style>  body{background-image:url #FFFFF;}</style>
+
+    <script language="JavaScript">
+                            function Onlynumbers(e)
+                            {
+                                var tecla=new Number();
+                                if(window.event) {
+                                    tecla = e.keyCode;
+                                }
+                                else if(e.which) {
+                                    tecla = e.which;
+                                }
+                                else {
+                                    return true;
+                                }
+                                if((tecla >= "97") && (tecla <= "122")){
+                                    return false;
+                                }
+                            }
+
+                            function Onlychars(e)
+                            {
+                                var tecla=new Number();
+                                if(window.event) {
+                                    tecla = e.keyCode;
+                                }
+                                else if(e.which) {
+                                    tecla = e.which;
+                                }
+                                else {
+                                    return true;
+                                }
+                                if((tecla >= "48") && (tecla <= "57")){
+                                    return false;
+                                }
+                            }
+
+                            </script>
+                            <!-- MASCARA VALORES -->
+                             <script type="text/javascript">
+                            function maskIt(w,e,m,r,a){
+                            // Cancela se o evento for Backspace
+                            if (!e) var e = window.event
+                            if (e.keyCode) code = e.keyCode;
+                            else if (e.which) code = e.which;
+                            // Variáveis da função
+                            var txt  = (!r) ? w.value.replace(/[^\d]+/gi,'') : w.value.replace(/[^\d]+/gi,'').reverse();
+                            var mask = (!r) ? m : m.reverse();
+                            var pre  = (a ) ? a.pre : "";
+                            var pos  = (a ) ? a.pos : "";
+                            var ret  = "";
+                            if(code == 9 || code == 8 || txt.length == mask.replace(/[^#]+/g,'').length) return false;
+                            // Loop na máscara para aplicar os caracteres
+                            for(var x=0,y=0, z=mask.length;x<z && y<txt.length;){
+                            if(mask.charAt(x)!='#'){
+                            ret += mask.charAt(x); x++; }
+                            else {
+                            ret += txt.charAt(y); y++; x++; } }
+                            // Retorno da função
+                            ret = (!r) ? ret : ret.reverse()
+                            w.value = pre+ret+pos; }
+                            // Novo método para o objeto 'String'
+                            String.prototype.reverse = function(){
+                            return this.split('').reverse().join(''); };
+                            </script>
+
+                            <script language="javascript">
+                            function number_format( number, decimals, dec_point, thousands_sep ) {
+                            var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
+                            var d = dec_point == undefined ? "," : dec_point;
+                            var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
+                            var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+                            return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+                            }
+
+                            </script>
+
+                            <script type="text/javascript" defer="defer">
+
+                                $("#cpf").mask("000.000.000-00");
+                                $("#falta_just").mask("000");
+                                $("#falta_injus").mask("000");
+                            </script>
+                            <script language="JavaScript">
+                                ( function($) {
+                                    msg = function(){
+                                    var x;
+                                        var r=confirm("Deseja realizar o Cadastro do premio!");
+                                        if (r==true)
+                                          {
+                                          x="você pressionou OK!";
+                                          const getDataFromTable = (tableId, schemaObject) => {
+                                              const table = document.getElementById(tableId);
+                                              const trChilds = table.getElementsByTagName("tr");
+
+                                              const lengthTr = trChilds.length;
+                                              let datas = [];
+                                              let data = {};
+                                              let tdChilds = undefined;
+
+                                              // ignore 0 is header
+                                              for(let i = 1; i < lengthTr; i++) {
+                                                data = {};
+                                                tdChilds = trChilds[i].getElementsByTagName('td');
+
+                                                // check that row has 3 cells
+                                                // if false, read next row
+                                                if(tdChilds.length !== 8) {
+                                                  continue;
+                                                }
+
+                                                // get all data from row and insert on data
+                                                Object.keys(schemaObject).forEach((key) => data[key] = tdChilds[schemaObject[key]].innerText);
+                                                datas.push(data);
+                                              }
+
+                                              return datas;
+                                            }
+
+                                            console.log(getDataFromTable('table-prem', { cpf: 0, nome: 1, premio_base: 2, falta_just: 3, falta_injus: 4, premio_final:5, obs:6 }));
+                                           }
+                                        else
+                                          {
+                                          x="Você pressionou Cancelar!";
+                                          }
+                                        document.getElementById("demo").innerHTML=x;
+                                    }
+                                })(jQuery);
+
+                            </script>
+                            <script language="JavaScript">
+                                    $(  function () {
+                                        $("td").dblclick(function () {
+                                            var conteudoOriginal = $(this).text();
+
+                                            $(this).addClass("celulaEmEdicao");
+                                            $(this).html("<input type='text' value='" + conteudoOriginal + "' />");
+                                            $(this).children().first().focus();
+
+                                            $(this).children().first().keypress(function (e) {
+                                                if (e.which == 13) {
+                                                    var novoConteudo = $(this).val();
+                                                    $(this).parent().text(novoConteudo);
+                                                    $(this).parent().removeClass("celulaEmEdicao");
+                                                }
+                                            });
+
+                                        $(this).children().first().blur(function(){
+                                            $(this).parent().text(conteudoOriginal);
+                                            $(this).parent().removeClass("celulaEmEdicao");
+                                        });
+                                        });
+                                    });
+                            </script>
+
+
+</head>
+<body>
+
+
+{% block nav %}
+   {% include "nav.html" %}
+{% endblock %}
+
+
+
+                <div class = "container-fluid">
+                    {% block main %}
+                    {% endblock %}
+                </div>
+
+    {% block footer %}
+    {% endblock %}
+
+</body>
+</html>

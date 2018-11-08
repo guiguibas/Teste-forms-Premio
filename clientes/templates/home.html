@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{%block title%}Home{% endblock %}
+
+
+{% block main %}
+{% csrf_token %}
+
+<script language="JavaScript">
+
+
+</script>
+<form method="POST" enctype="multipart/form-data">
+
+
+
+                                    </form>
+
+        <div class="form-group">
+             <div class = "jumbotron" style="background-color: #FFFFFF;" >
+                 <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="container-fluid" >
+                            <div class="row">
+                                    <div class="col-md-auto">
+                                        <label>Usuário</label>
+                                            <select disabled class = "form-control" size="">
+                                                <option>{{user.username}}</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-md-auto">
+
+                                            <label for="competenc">Competência</label>
+                                            <select id="competenc" class = "form-control">
+                                                    <option value="01-2018">01-2018</option>
+                                                    <option value="02-2018">02-2018</option>
+                                                    <option value="03-2018">03-2018</option>
+                                                    <option value="04-2018">04-2018</option>
+                                                    <option value="05-2018">05-2018</option>
+                                                    <option value="06-2018">06-2018</option>
+                                                    <option value="07-2018">07-2018</option>
+                                                    <option value="08-2018">08-2018</option>
+                                                    <option value="09-2018">09-2018</option>
+                                                    <option value="10-2018">10-2018</option>
+                                            </select>
+                                    </div>
+                                <div class="col-md-auto">
+                                    <label for="tipo_prem" class="label">Tipo de Premio </label>
+                                    <select id="tipo_prem" class = "form-control">
+                                        {% for list in lists %}
+                                        <option value="{{ list }}">{{ list }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div id ="div_esconder" class="col-md-auto">
+                                    <label for="nota_camp">Num. NF </label>
+                                    <input type="text" id="nota_camp" name="nota_camp" class = "form-control"/>
+                                </div>
+                            </div>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-auto">
+                                            <label for="carteira" >Departamento</label>
+                                            <select id="carteira"  class="form-control" >
+                                                {% for depart in departs %}
+                                                <option value="{{ depart.CC_Custo }}">{{ depart.Descricao }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <label for="ccusto">Centro de Custo </label>
+                                            <select id="ccusto" name="crt_custo" class="form-control " >
+                                                {% for ctr_custo in departs %}
+                                                <option  data-course="{{ctr_custo.CC_Custo }}"  value="{{ ctr_custo.CC_Custo }}" > {{ ctr_custo.CC_Custo }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <!-- SELECIONANDO CC CORRETO -->
+                                            <script language="JavaScript">
+                                            $(function () {
+
+                                               // Oculta as opções do segundo select:
+                                                $("#ccusto option").hide();
+
+
+                                               // Observa o evento change do primeiro select:
+                                                $("#carteira").on("change",
+
+                                                function () {
+                                                // Recupera o valor selecionado:
+                                                let course = $("#carteira").val();
+                                                $("#ccusto option").hide();
+                                                document.getElementById('ccusto').value="";
+
+
+                                                // Exibe as opções conforme a seleção:
+                                                $("#ccusto option[data-course='"+ course +"']").show();
+
+                                              });
+
+                                            });
+                                        </script>
+
+                                        </div>
+                                 </div>
+                            </div>
+
+
+                        <hr class="my-6">
+
+                        <div class = "table-overflow">
+
+
+                            <!-- DELETE ROW DA TABELE-->
+                            <script type="text/javascript">
+                                function deleteRow(i){
+                                    document.getElementById('table-prem').deleteRow(i)
+                                    }
+                            </script>
+                            <!-- CRIANDO ROW DA TABELE-->
+                            <script type="text/javascript">
+
+                                        $(document).ready(function() {
+                                            inputs();
+                                            });
+                                        (function($) {
+
+
+                                            AddTableRow = function() {
+
+                                                var newRow = $("<tr>");
+                                                var cols = "";
+                                                cols += '<td bgcolor="#dddddf" >000.000.000-00</td>';
+                                                cols += '<td bgcolor="#ddddde" >Fulano</td>';
+                                                cols += '<td bgcolor="#dddddd" >1212</td>';
+                                                cols += '<td bgcolor="#dddddc" >1</td>';
+                                                cols += '<td bgcolor="#dddddb" >1</td>';
+                                                cols += '<td bgcolor="#ddddda" >1212</td>';
+                                                cols += '<td bgcolor="#ddddd9" >testanto</td>';
+                                                cols += '<td>';
+                                                cols += '<button onclick="deleteRow(this.parentNode.parentNode.rowIndex)" type="button" class="btn btn-danger" ><i class="fa fa-trash"></i></button>';
+                                                cols += '</td>';
+                                                newRow.append(cols);
+                                                $("#table-prem").append(newRow);
+                                                return false;
+
+
+                                            };
+                                        })(jQuery);
+                            </script>
+
+
+                            <table data-spy="scroll" class = "table table-sm " id="table-prem"  >
+                                <thead>
+                                <tr style="background-color: #b3b3b3;">
+                                    <th scope="col" id="cpf">CPF</th>
+                                    <th scope="col" id="nome">Nome</th>
+                                    <th scope="col" id="premio_base">Premio Base</th>
+                                    <th scope="col" id="falta_just">Falta Just.</th>
+                                    <th scope="col" id="falta_injus">Falta Injut.</th>
+                                    <th scope="col" id="premio_final">Premio Final</th>
+                                    <th scope="col" id="obs">Observação</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td bgcolor="#dddddf" >000.000.000-00</td>
+                                        <td bgcolor="#ddddde" >Fulano</td>
+                                        <td bgcolor="#dddddd" >1212</td>
+                                        <td bgcolor="#dddddc" >1</td>
+                                        <td bgcolor="#dddddb" >1</td>
+                                        <td bgcolor="#ddddda" >1212</td>
+                                        <td bgcolor="#ddddd9" >testanto</td>
+                                        <td bgcolor="#ddddd8">
+                                            <button onclick="deleteRow(this.parentNode.parentNode.rowIndex)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" style="text-align: left;">
+                                        <button onclick="AddTableRow()" class="btn btn-secondary" type="button">Adicionar Premio</button>
+                                        </td>
+
+                                        <td colspan="5" style="text-align: right;">
+                                        <button onclick="msg()"  class="btn btn-lg btn-success my-2 my-sm-0"  type="button" id="btnCadastro" >Cadastrar</button>
+
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+
+                    </div>
+                 </form>
+              </div>
+         </div>
+    </div>
+<div>
+
+</div>
+{% endblock %}
+
+    {% block footer %}
+
+
+    {% endblock %}

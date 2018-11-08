@@ -1,0 +1,88 @@
+
+.trash-item{
+    float: right;
+}
+
+.trash-item-2{
+    float: left;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px; /* Set the fixed height of the footer here */
+  line-height: 100px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+
+
+.img-border {
+border-radius: 10px;
+}
+
+.table-overflow {
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.tnh-txt {
+    padding: 3 4px;
+}
+
+.fundo-home
+{
+    background-image: url('wizard-city2.jpg');
+    background-repeat: no-repeat;
+    background-size:100%;
+    bottom: 0;
+    color: black;
+    left: 0;
+    overflow: auto;
+    padding: 3em;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 70;
+}
+
+.topo {
+     top: 0;
+     padding: 0em;
+
+}
+
+label {
+    padding-top: 7px;
+    text-align: right;
+}
+
+function testanto_table (){
+    var table = $('#table-prem').tableToJSON();
+    alert(JSON.stringify(table));
+    };
+
+.tabelaEditavel {
+    border:solid 1px;
+    width:100%
+}

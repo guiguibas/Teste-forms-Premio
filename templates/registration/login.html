@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+    {%block title %} Login {% endblock %}
+
+
+
+{% block main %}
+
+<br>
+<br>
+        <div class="container">
+          <div class = "jumbotron">
+          <div class="row">
+            <div class="col-sm">
+
+            </div>
+            <div class="col-6">
+
+
+
+              <h2>Login</h2>
+                <form method="POST">
+                {% csrf_token %}
+                {{form|bootstrap}}
+
+
+                    <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0"> Login</button>
+                </form>
+            </div>
+            <div class="col-sm">
+
+            </div>
+          </div>
+          </div>
+        </div>
+
+
+{% endblock %}
+
+    {% block footer %}
+    <footer class="footer">
+          <div class="container">
+            <span class="text-muted">Cadastro de Premiação</span>
+          </div>
+        </footer>
+    {% endblock %}
+
+</body>
